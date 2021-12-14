@@ -6,23 +6,21 @@ use App\Models\PelangganModel;
 
 class Pelanggan extends Controller
 {
-
-
        
     public function index()
     {   
-        $session = session();
         if (!session()->get('isLoggedIn'))
         {
              $session->setFlashdata('msg', 'Anda Harus Login Terlebih Dahulu');
-          
+
             return redirect()
                 ->to('/home');
-        }else{
-            $pelanggan = new PelangganModel();
+        }else
+      
+            {$pelanggan = new PelangganModel();
             $data = $pelanggan->getPelanggan();
-              return view('pelanggan',compact('data'));
-        }
+              return view('pelanggan',compact('data'));}
+        
       
       
     }
@@ -80,17 +78,11 @@ function hapus_pelanggan($id_pelanggan=null){
         return redirect()->to( base_url('pelanggan') );
     }
 }
+
 public function tambah_pelanggan()
     {
-$session = session();
-     if (!session()->get('isLoggedIn'))
-        {
-             $session->setFlashdata('msg', 'Anda Harus Login Terlebih Dahulu');
-          
-            return redirect()
-                ->to('/home');
-        }else
-        {
+        $ceksesi = $this->auth();
+        
         helper(['form', 'url']);
             $postModel = new PelangganModel();
             
@@ -112,6 +104,6 @@ $session = session();
 
             return redirect()->to(base_url('pelanggan'));
     
-    }
+    
 }
 }
