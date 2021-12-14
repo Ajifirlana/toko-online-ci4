@@ -253,6 +253,16 @@
      
            <input type="text" name="nama_kategori" autocomplete="off" value="<?=$row['nama_kategori'];?>" required placeholder="Masukkan Kategori" class="form-control" cols="30" rows="3">
           
+          </div>  
+          <div class="form-group">
+            <label>Status</label>
+     <select name="status" class="form-control">
+       <option value="<?=$row['status'];?>"><?=$row['status'];?></option>
+<option value="0">0</option>
+
+       <option value="1">1</option>
+     </select>
+          
           </div>         
            
         </div>

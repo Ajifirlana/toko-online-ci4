@@ -59,12 +59,10 @@ function edit_kategori($id_kategori){
         {
             $postModel = new KategoriModel();
             
-            //insert data into database
             $postModel->update($id_kategori, [
                 'nama_kategori'   => $this->request->getPost('nama_kategori'),
+                'status'   => $this->request->getPost('status'),
             ]);
-
-            //flash message
             session()->setFlashdata('msg', '
              <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
