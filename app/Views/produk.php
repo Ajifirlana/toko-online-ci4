@@ -40,9 +40,10 @@
       <div class="box-header">
         <h3 class="box-title">Data Produk</h3>
 
-<br>
+<p></p>
     <a data-toggle="modal" data-target="#modal-tambah">
-      <button class="btn btn-primary"><i class="fa fa-plus"></i>Tambah Produk</button><br><br>
+      <button class="btn btn-primary"><i class="fa fa-plus"></i>Tambah Produk</button>
+
     </a>
 
  <?php

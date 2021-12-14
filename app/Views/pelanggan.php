@@ -38,11 +38,11 @@
     
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Data Kategori</h3>
+        <h3 class="box-title">Data Pelanggan</h3>
 
 <p></p>
     <a data-toggle="modal" data-target="#modal-tambah">
-      <button class="btn btn-primary"><i class="fa fa-plus"></i>Tambah Kategori</button>
+      <button class="btn btn-primary"><i class="fa fa-plus"></i>Tambah Pelanggan</button>
 
     </a>
 
@@ -72,8 +72,10 @@
           <tr>
 
             <th>No</th>
-            <th>Nama Kategori</th>
+            <th>Nama Pelanggan</th>
+            <th>No Telp</th>
 
+            <th>email</th>
             <th>Status</th>
             <th>Aksi</th>
           </tr>
@@ -87,7 +89,11 @@
           <tr>
 
   <td><?php echo $no++; ?></td>
-  <td><?php echo $row['nama_kategori']; ?></td>
+  <td><?php echo $row['nama']; ?></td>
+
+  <td><?php echo $row['no_telp']; ?></td>
+
+  <td><?php echo $row['email']; ?></td>
 
 
             <td><?php echo $row['status']; ?></td>
@@ -95,9 +101,9 @@
             <td>
         
 
- <a data-toggle="modal" data-target="#modal-edit<?=$row['id_kategori'];?>" button class="btn btn-info btn-flat btn-xs" data-popup="tooltip" data-placement="top" title="Edit Data"><i class="fa fa-pencil-square-o"></i></a>
+ <a data-toggle="modal" data-target="#modal-edit<?=$row['id_pelanggan'];?>" button class="btn btn-info btn-flat btn-xs" data-popup="tooltip" data-placement="top" title="Edit Data"><i class="fa fa-pencil-square-o"></i></a>
 
- <a data-toggle="modal" data-target="#modal-hapus<?=$row['id_kategori'];?>" button class="btn btn-danger btn-flat btn-xs" data-popup="tooltip" data-placement="top" title="Hapus Data"><i class="fa fa-trash"></i></a>
+ <a data-toggle="modal" data-target="#modal-hapus<?=$row['id_pelanggan'];?>" button class="btn btn-danger btn-flat btn-xs" data-popup="tooltip" data-placement="top" title="Hapus Data"><i class="fa fa-trash"></i></a>
 
             </td>
           </tr>
@@ -115,23 +121,23 @@
            ?>
 
   <div class="row">
-  <div id="modal-hapus<?=$row['id_kategori'];?>" class="modal fade">
+  <div id="modal-hapus<?=$row['id_pelanggan'];?>" class="modal fade">
     <div class="modal-dialog">
  
-<form action="kategori/hapus_kategori/<?=$row['id_kategori'];?>" method="post">
+<form action="pelanggan/hapus_pelanggan/<?=$row['id_pelanggan'];?>" method="post">
       <div class="modal-content">
         <div class="modal-header bg-primary">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Hapus Data Kategori</h4>
+          <h4 class="modal-title">Hapus Data Pelanggan</h4>
         </div>
         <div class="modal-body">
  
-          <input type="hidden" readonly value="<?=$row['id_kategori'];?>" name="id_kategori" class="form-control" >
+          <input type="hidden" readonly value="<?=$row['id_pelanggan'];?>" name="id_kategori" class="form-control" >
  
  <div class="form-group">
-            <label>Apakah Anda Yakin Menghapus Data Kategori...???</label>
+            <label>Apakah Anda Yakin Menghapus Data...???</label>
             
-            <label>"<?=$row['nama_kategori'];?>"</label>
+            <label>"<?=$row['nama'];?>"</label>
           </div>
           
         </div>
@@ -189,32 +195,52 @@
   <div id="modal-tambah" class="modal fade">
     <div class="modal-dialog">
  
-<form action="kategori/tambah_kategori" method="post">
+<form action="pelanggan/tambah_pelanggan" method="post">
       <div class="modal-content">
         <div class="modal-header bg-primary">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Tambah Data Kategori</h4>
         </div>
-        <div class="modal-body">
+        
+               <div class="modal-body">
  
-           <div class="form-group">
-            <label>Nama Kategori</label>
-          <input type="text" name="nama_kategori" autocomplete="off" required placeholder="Masukkan Nama Kategori" class="form-control" cols="30" rows="3">
-          </div>
 
- <div class="form-group">
+         <div class="form-group">
+            <label>Nama Pelanggan</label>
+     
+           <input type="text" name="nama" autocomplete="off" required placeholder="Masukkan Nama" class="form-control" cols="30" rows="3">
+          
+          </div>  
+          <div class="form-group">
+            <label>No Telp</label>
+     
+           <input type="text" name="no_telp" autocomplete="off" required placeholder="Masukkan No Telp" class="form-control" cols="30" rows="3">
+          
+          </div>  <div class="form-group">
+            <label>Email</label>
+     
+           <input type="text" name="email" autocomplete="off" required placeholder="Masukkan Email" class="form-control">
+          
+          </div> 
+          <div class="form-group">
+            <label>Password</label>
+     
+           <input type="password" name="password" autocomplete="off" required placeholder="Masukkan Password" class="form-control">
+          
+          </div>  
+          <div class="form-group">
             <label>Status</label>
-         
+     <select name="status" class="form-control">
 
-            <select name="status" class="form-control">
 <option value="0">0</option>
 
-<option value="1">1</option>
-            </select>
-          </div>
-  
+       <option value="1">1</option>
+     </select>
+          
+          </div>         
            
         </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-warning"><i class="icon-pencil5"></i> Simpan</button>
@@ -233,26 +259,37 @@
            ?>
 
   <div class="row">
-  <div id="modal-edit<?=$row['id_kategori'];?>" class="modal fade">
+  <div id="modal-edit<?=$row['id_pelanggan'];?>" class="modal fade">
     <div class="modal-dialog">
  
-<form action="kategori/edit_kategori/<?=$row['id_kategori'];?>" method="post">
+<form action="pelanggan/edit_pelanggan/<?=$row['id_pelanggan'];?>" method="post">
       <div class="modal-content">
         <div class="modal-header bg-primary">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Edit Data Kategori</h4>
+          <h4 class="modal-title">Edit Data Pelanggan</h4>
         </div>
         <div class="modal-body">
  
-          <input type="hidden" readonly value="<?=$row['id_kategori'];?>" name="id_kategori" class="form-control" >
+          <input type="hidden" readonly value="<?=$row['id_pelanggan'];?>" name="id_kategori" class="form-control" >
  
   
 
 
          <div class="form-group">
-            <label>Nama Kategori</label>
+            <label>Nama Pelanggan</label>
      
-           <input type="text" name="nama_kategori" autocomplete="off" value="<?=$row['nama_kategori'];?>" required placeholder="Masukkan Kategori" class="form-control" cols="30" rows="3">
+           <input type="text" name="nama" autocomplete="off" value="<?=$row['nama'];?>" required placeholder="Masukkan Nama" class="form-control" cols="30" rows="3">
+          
+          </div>  
+          <div class="form-group">
+            <label>No Telp</label>
+     
+           <input type="text" name="no_telp" autocomplete="off" value="<?=$row['no_telp'];?>" required placeholder="Masukkan No Telp" class="form-control" cols="30" rows="3">
+          
+          </div>  <div class="form-group">
+            <label>Email</label>
+     
+           <input type="text" name="email" autocomplete="off" value="<?=$row['email'];?>" required placeholder="Masukkan Email" class="form-control">
           
           </div>  
           <div class="form-group">

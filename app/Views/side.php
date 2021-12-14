@@ -68,7 +68,7 @@
     
         </li>
         <li class="treeview">
-          <a href="<?php echo base_url();?>index.php/dashboard/anak_terapis">
+          <a href="pelanggan">
            <i class="fa fa-files-o"></i> <span>Pelanggan</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
